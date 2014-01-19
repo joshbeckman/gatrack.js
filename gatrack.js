@@ -19,10 +19,10 @@
     link: function(elem, category, action){
       var cat = category || elem.dataset.gatrackCategory,
         act = action || elem.dataset.gatrackAction || elem.href || elem.title || elem.id || 'Unspecified link';
-      if (!cat && ((elem.target && elem.target == '_blank') || (elem.href && (elem.href.slice(0,4) == 'http')))) {
-        cat = 'Outbound Links';
+      if (!cat && (elem.target && elem.target == '_blank')) {
+        cat = 'Outbound Link';
       } else if (!category) {
-        cat = 'Internal Links';
+        cat = 'Link Event';
       }
       elem.addeventlistener('click', clickEvent, false);
       function clickEvent() {
@@ -37,7 +37,7 @@
     },
     // Trigger GA event on buttons or clickable elements
     click: function(elem, category, action){
-      var cat = category || elem.dataset.gatrackCategory,
+      var cat = category || elem.dataset.gatrackCategory || 'Click Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || 'Unspecified click';
       elem.addeventlistener('click', clickEvent, false);
       function clickEvent() {
@@ -49,7 +49,7 @@
       var px,
         point = scrollPoint || elem.dataset.gatrackScrollPoint,
         direct = direction || elem.dataset.gatrackScrollDirection || 'y',
-        cat = category || elem.dataset.gatrackCategory || 'Scroll Element',
+        cat = category || elem.dataset.gatrackCategory || 'Scroll Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || document.getElementsByTagName('title')[0].textContent || 'Unspecified scroll';
       if(point.slice(-1) == '%') {
         px = (direct == 'y' ? elem.clientHeight : elem.clientWidth) * parseInt(point.slice(0,(point.length - 2)))/100;
@@ -70,7 +70,7 @@
       }
     },
     hover: function(elem, category, action){
-      var cat = category || elem.dataset.gatrackCategory || 'Hover Element',
+      var cat = category || elem.dataset.gatrackCategory || 'Hover Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || 'Unspecified hover';
       elem.addeventlistener('mouseover', mouseEvent, false);
       function mouseEvent(){
@@ -78,7 +78,7 @@
       }
     },
     touch: function(elem, category, action){
-      var cat = category || elem.dataset.gatrackCategory || 'Touch Element',
+      var cat = category || elem.dataset.gatrackCategory || 'Touch Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || 'Unspecified touch';
       elem.addeventlistener('touchstart', touchEvent, false);
       function touchEvent(){
@@ -86,7 +86,7 @@
       }
     },
     load: function(elem, category, action){
-      var cat = category || elem.dataset.gatrackCategory || 'Load Element',
+      var cat = category || elem.dataset.gatrackCategory || 'Load Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || 'Unspecified load';
       elem.addeventlistener('load', loadEvent, false);
       function loadEvent(){
