@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type" />
+    <title>gatrack.js: Easily track user events with Google Analytics</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <style type="text/css">
+      body{
+        margin:0;
+      }
+      #hover-div{
+        height: 200px;
+        background-color: coral;
+      }
+      .container{
+        max-width: 1000px;
+        margin:0 auto;
+      }
+    </style>
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXXXXX', 'example.com');
+      ga('send', 'pageview');
+    </script>
+    <script type="text/javascript"
+      src="./lib/gatrack.min.js"
+    ></script>
+  </head>
+  <body>
+    <div id="hover-div">
+      <div class="container">
+        <h3>Hover over me!</h3>
+      </div>
+    </div>
+    <script type="text/javascript">
+      // Let's demo this.
+      document.getElementById('hover-div').onmouseover = function(){
+        gatrack.action(this, null, null, function(result){
+          console.log(result);
+        });
+      };
+    </script>
+  </body>
+</html>
