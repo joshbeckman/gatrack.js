@@ -2,22 +2,22 @@
 
 > Easily track user events with Google Analytics.
 
-## Way-cool features:
+## Way-cool:
 
-- Support for both legacy and newer versions of Google's analytics [tracking scripts](#things-youll-need) (_ga_ and __gaq_)
+- [Auto-track](#api-usage) events on elements with a class-based API
+- Explicit [action hook](#registering-custom-events), works with [any registerable browser event](https://developer.mozilla.org/en-US/docs/Web/Reference/Events) 
+- Support for multiple versions of Google's analytics [tracking scripts](#things-youll-need) (_ga_ and __gaq_)
 - Weighs under 3kb (_even smaller if you're smart enough to gzip_)
-- Explicit [action hook](#registering-custom-events), works with [any registerable browser event](https://developer.mozilla.org/en-US/docs/Web/Reference/Events)
 - Provides support for [common events](#api-usage)
   - Scrolling
   - Touches
   - Links
   - Clicks
   - Hovering
-- [Auto-track](#api-usage) events on elements with a class-based API
 
 ## Things you'll need
 
-- A version of the [Google Analytics](http://www.google.com/analytics/) tracking script released within the last 2-3 years
+- A version of the [Google Analytics](http://www.google.com/analytics/) tracking script released within the last couple years
 - A Google Analytics profile
 
 ## API usage
