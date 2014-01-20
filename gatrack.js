@@ -3,10 +3,10 @@
     action: function(elem, category, action, callback) {
       var result = 'success';
       try {
-        ga('send', 'event', category, action);
+        window.ga('send', 'event', category, action);
       } catch(gaErr) {
         try {
-          _gaq.push(['_trackEvent', category, action]);
+          window._gaq.push(['_trackEvent', category, action]);
         } catch(gaqErr) {
           result = gaqErr;
         }
@@ -24,7 +24,7 @@
       } else if (!category) {
         cat = 'Link Event';
       }
-      elem.addeventlistener('click', clickEvent, false);
+      elem.addEventListener('click', clickEvent, false);
       function clickEvent() {
         gatrack.action(elem, cat, act, function(result) {
           if (elem.href) {
@@ -39,7 +39,7 @@
     click: function(elem, category, action){
       var cat = category || elem.dataset.gatrackCategory || 'Click Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || 'Unspecified click';
-      elem.addeventlistener('click', clickEvent, false);
+      elem.addEventListener('click', clickEvent, false);
       function clickEvent() {
         gatrack.action(elem, cat, act);
       }
@@ -56,7 +56,7 @@
       } else if (point.slice(-2) == 'px') {
         px = parseInt(point.slice(0,(point.length - 3)));
       }
-      elem.addeventlistener('scroll', scrollEvent, false);
+      elem.addEventListener('scroll', scrollEvent, false);
       function scrollEvent() {
         var start;
         if (direct == 'y') {
@@ -72,7 +72,7 @@
     hover: function(elem, category, action){
       var cat = category || elem.dataset.gatrackCategory || 'Hover Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || 'Unspecified hover';
-      elem.addeventlistener('mouseover', mouseEvent, false);
+      elem.addEventListener('mouseover', mouseEvent, false);
       function mouseEvent(){
         gatrack.action(elem, cat, act);
       }
@@ -80,7 +80,7 @@
     touch: function(elem, category, action){
       var cat = category || elem.dataset.gatrackCategory || 'Touch Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || 'Unspecified touch';
-      elem.addeventlistener('touchstart', touchEvent, false);
+      elem.addEventListener('touchstart', touchEvent, false);
       function touchEvent(){
         gatrack.action(elem, cat, act);
       }
@@ -88,7 +88,7 @@
     load: function(elem, category, action){
       var cat = category || elem.dataset.gatrackCategory || 'Load Event',
         act = action || elem.dataset.gatrackAction || elem.title || elem.id || 'Unspecified load';
-      elem.addeventlistener('load', loadEvent, false);
+      elem.addEventListener('load', loadEvent, false);
       function loadEvent(){
         gatrack.action(elem, cat, act);
       }
@@ -96,51 +96,28 @@
   };
   // Find and bind pre-determined trackable elements
   var linkable = document.getElementsByClassName('ga-link-trackable'),
-    i = linkable.length - 1,
     loadable = document.getElementsByClassName('ga-load-trackable'),
-    j = loadable.length - 1,
     scrollable = document.getElementsByClassName('ga-scroll-trackable'),
-    k = scrollable.length - 1,
     hoverable = document.getElementsByClassName('ga-hover-trackable'),
-    l = hoverable.length - 1,
     touchable = document.getElementsByClassName('ga-touch-trackable'),
-    m = touchable.length - 1,
     clickable = document.getElementsByClassName('ga-click-trackable'),
-    n = clickable.length - 1;
-  for (; i >= 0; i--) {
-    linkable[i].addeventlistener('click', makeLinkTracker, false);
+    i;
+  for (i = linkable.length - 1; i >= 0; i--) {
+    gatrack.link(linkable[i]);
   }
-  for (; j >= 0; j--) {
-    loadable[i].addeventlistener('load', makeLoadTracker, false);
+  for (i = loadable.length - 1; i >= 0; i--) {
+    gatrack.load(loadable[i]);
   }
-  for (; k >= 0; k--) {
-    loadable[i].addeventlistener('scroll', makeScrollTracker, false);
+  for (i = scrollable.length - 1; i >= 0; i--) {
+    gatrack.scrollAt(scrollable[i]);
   }
-  for (; l >= 0; l--) {
-    hoverable[i].addeventlistener('mouseover', makeHoverTracker, false);
+  for (i = hoverable.length - 1; i >= 0; i--) {
+    gatrack.hover(hoverable[i]);
   }
-  for (; m >= 0; m--) {
-    touchable[i].addeventlistener('touchstart', makeTouchTracker, false);
+  for (i = touchable.length - 1; i >= 0; i--) {
+    gatrack.touch(touchable[i]);
   }
-  for (; n >= 0; n--) {
-    clickable[i].addeventlistener('click', makeClickTracker, false);
-  }
-  function makeClickTracker () {
-    gatrack.click(this);
-  }
-  function makeTouchTracker () {
-    gatrack.touch(this);
-  }
-  function makeHoverTracker () {
-    gatrack.hover(this);
-  }
-  function makeScrollTracker () {
-    gatrack.scrollAt(this);
-  }
-  function makeLinkTracker () {
-    gatrack.link(this);
-  }
-  function makeLoadTracker () {
-    gatrack.load(this);
+  for (i = clickable.length - 1; i >= 0; i--) {
+    gatrack.click(clickable[i]);
   }
 })(this, this.document);
