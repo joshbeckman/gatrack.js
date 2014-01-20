@@ -60,9 +60,9 @@
       function scrollEvent() {
         var start;
         if (direct == 'y') {
-          start = elem.scrollY;
+          start = this.scrollY + this.clientHeight;
         } else {
-          start = elem.scrollX;
+          start = this.scrollX + this.clientWidth;
         }
         if (start > px) {
           gatrack.action(elem, cat, act);
