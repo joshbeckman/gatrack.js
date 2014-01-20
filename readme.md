@@ -70,6 +70,8 @@ In general, the event hooks look for things like an element `id` or `title` attr
 
 In the case of the __link__ event, it looks for the `href` value in absence of an explicity declaration or data-attribute, and the __scrollAt__ event looks for the page title content.
 
+*__gatrack.init__()* is available and can be used to initialize the event listeners on specified elements whenever you like.
+
 ## Examples
 
 Check out the included [index.html](https://github.com/jbckmn/gatrack.js/blob/master/index.html) for a working example.

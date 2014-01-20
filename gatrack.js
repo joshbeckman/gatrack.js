@@ -92,32 +92,35 @@
       function loadEvent(){
         gatrack.action(elem, cat, act);
       }
+    },
+    init: function(){
+      // Find and bind pre-determined trackable elements
+      var linkable = document.getElementsByClassName('ga-link-trackable'),
+        loadable = document.getElementsByClassName('ga-load-trackable'),
+        scrollable = document.getElementsByClassName('ga-scroll-trackable'),
+        hoverable = document.getElementsByClassName('ga-hover-trackable'),
+        touchable = document.getElementsByClassName('ga-touch-trackable'),
+        clickable = document.getElementsByClassName('ga-click-trackable'),
+        i;
+      for (i = linkable.length - 1; i >= 0; i--) {
+        gatrack.link(linkable[i]);
+      }
+      for (i = loadable.length - 1; i >= 0; i--) {
+        gatrack.load(loadable[i]);
+      }
+      for (i = scrollable.length - 1; i >= 0; i--) {
+        gatrack.scrollAt(scrollable[i]);
+      }
+      for (i = hoverable.length - 1; i >= 0; i--) {
+        gatrack.hover(hoverable[i]);
+      }
+      for (i = touchable.length - 1; i >= 0; i--) {
+        gatrack.touch(touchable[i]);
+      }
+      for (i = clickable.length - 1; i >= 0; i--) {
+        gatrack.click(clickable[i]);
+      }
     }
   };
-  // Find and bind pre-determined trackable elements
-  var linkable = document.getElementsByClassName('ga-link-trackable'),
-    loadable = document.getElementsByClassName('ga-load-trackable'),
-    scrollable = document.getElementsByClassName('ga-scroll-trackable'),
-    hoverable = document.getElementsByClassName('ga-hover-trackable'),
-    touchable = document.getElementsByClassName('ga-touch-trackable'),
-    clickable = document.getElementsByClassName('ga-click-trackable'),
-    i;
-  for (i = linkable.length - 1; i >= 0; i--) {
-    gatrack.link(linkable[i]);
-  }
-  for (i = loadable.length - 1; i >= 0; i--) {
-    gatrack.load(loadable[i]);
-  }
-  for (i = scrollable.length - 1; i >= 0; i--) {
-    gatrack.scrollAt(scrollable[i]);
-  }
-  for (i = hoverable.length - 1; i >= 0; i--) {
-    gatrack.hover(hoverable[i]);
-  }
-  for (i = touchable.length - 1; i >= 0; i--) {
-    gatrack.touch(touchable[i]);
-  }
-  for (i = clickable.length - 1; i >= 0; i--) {
-    gatrack.click(clickable[i]);
-  }
+  window.gatrack.init();
 })(this, this.document);
