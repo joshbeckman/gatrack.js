@@ -19,20 +19,14 @@
     link: function(elem, category, action){
       var cat = category || elem.dataset.gatrackCategory,
         act = action || elem.dataset.gatrackAction || elem.href || elem.title || elem.id || 'Unspecified link';
-      if (!cat && (elem.target && elem.target == '_blank')) {
+      if (!cat && (elem.target && elem.target != '_self')) {
         cat = 'Outbound Link';
-      } else if (!category) {
+      } else if (!cat) {
         cat = 'Link Event';
       }
       elem.addEventListener('click', clickEvent, false);
-      function clickEvent() {
-        gatrack.action(elem, cat, act, function(result) {
-          if (elem.href) {
-            setTimeout(function(){
-              window.open(elem.href, elem.target);
-            }, 100);
-          }
-        });
+      function clickEvent(evt) {
+        gatrack.action(elem, cat, act);
       }
     },
     // Trigger GA event on buttons or clickable elements
