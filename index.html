@@ -39,10 +39,11 @@
     <script type="text/javascript">
       // Let's demo this.
       document.getElementById('hover-div').onmouseover = function(){
-        gatrack.action(this, null, null, function(result){
+        gatrack.action(this, null, null, null, null, function(result){
           console.log(result);
         });
       };
+      gatrack.click(document.getElementById('hover-div'));
     </script>
   </body>
 </html>
