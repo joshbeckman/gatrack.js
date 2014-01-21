@@ -22,7 +22,7 @@
 
 ## API usage
 
-The API, on load, detects and tracks events for touch, hover, scroll, click, link and load. To specify category or the action being taken (both optional), simply add data-attributes of `gatrack-category` and/or `gatrack-action`.
+The API, on load, detects and tracks events for touch, hover, scroll, click, link and load. To specify category or the action being taken (both optional), simply add data-attributes of `gatrack-category` and/or `gatrack-action` and/or `gatrack-label` and/or `gatrack-value`.
 
 #### Click events
 
@@ -50,27 +50,34 @@ For an element on which you wish to track scroll events, add a class of `ga-scro
 
 ## Registering custom events
 
-*__gatrack.action__(element [, category, action, callback(result)])*
+*__gatrack.action__(element, category, action [, label, value, callback(result)])*
 
-*__gatrack.link__(element [, category, action])*
+*__gatrack.link__(element [, category, action, label, value])*
 
-*__gatrack.click__(element [, category, action])*
+*__gatrack.click__(element [, category, action, label, value])*
 
-*__gatrack.load__(element [, category, action])*
+*__gatrack.load__(element [, category, action, label, value])*
 
-*__gatrack.touch__(element [, category, action])*
+*__gatrack.touch__(element [, category, action, label, value])*
 
-*__gatrack.hover__(element [, category, action])*
+*__gatrack.hover__(element [, category, action, label, value])*
 
-*__gatrack.scrollAt__(element, scrollPoint [, scrollDirection, category, action])*
-
-The __action__ hook, when given an optional callback function, returns a 'success' string on success and a traditional error object otherwise.
+*__gatrack.scrollAt__(element, scrollPoint [, scrollDirection, category, action, label, value])*
 
 In general, the event hooks look for things like an element `id` or `title` attribute to assign to the _action_ parameter when one is not specified either explicitly or in the data-attribute of the element.
 
 In the case of the __link__ event, it looks for the `href` value in absence of an explicity declaration or data-attribute, and the __scrollAt__ event looks for the page title content.
 
 *__gatrack.init__()* is available and can be used to initialize the event listeners on specified elements whenever you like.
+
+The __action__ hook, when given an optional callback function, returns a 'success' string on success and a traditional error object otherwise.
+
+- __category:__ _string_
+- __action:__ _string_
+- __label:__ _string_
+- __value:__ _integer_
+
+You can [read more specifics](https://developers.google.com/analytics/devguides/collection/analyticsjs/events) about [the event object in Google Analytics](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide).
 
 ## Examples
 
