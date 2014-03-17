@@ -2,9 +2,10 @@
   window.gatrack = window.gatrack || {
     action: function(elem, category, action, label, value, callback) {
       var result = 'success',
-        intVal = parseInt(value || 0, 10);
+        intVal = parseInt(value || 0, 10),
+        profile = initProfile ? (initProfile + '.') : '';
       try {
-        window.ga('send', 'event', category, action, label, intVal);
+        window.ga(profile + 'send', 'event', category, action, label, intVal);
       } catch(gaErr) {
         try {
           window._gaq.push(['_trackEvent', category, action, label, intVal]);
@@ -20,7 +21,7 @@
     link: function(elem, category, action, label, value){
       var cat = category || elem.dataset.gatrackCategory || 'Link Event',
         act = action || elem.dataset.gatrackAction || elem.href || elem.title || elem.id,
-        lab = label || elem.dataset.gatrackLabel,
+        lab = label || elem.rel || elem.dataset.gatrackLabel,
         val = value || elem.dataset.gatrackValue;
       if (!act && (elem.target && elem.target != '_self')) {
         act = 'Outbound Link';
@@ -100,7 +101,7 @@
         gatrack.action(elem, cat, act, lab, val);
       }
     },
-    init: function(){
+    init: function(profile){
       // Find and bind pre-determined trackable elements
       var linkable = document.getElementsByClassName('ga-link-trackable'),
         loadable = document.getElementsByClassName('ga-load-trackable'),
@@ -109,6 +110,7 @@
         touchable = document.getElementsByClassName('ga-touch-trackable'),
         clickable = document.getElementsByClassName('ga-click-trackable'),
         i;
+      initProfile = profile;
       for (i = linkable.length - 1; i >= 0; i--) {
         gatrack.link(linkable[i]);
       }
@@ -129,5 +131,6 @@
       }
     }
   };
+  var initProfile;
   window.gatrack.init();
 })(this, this.document);
