@@ -72,6 +72,12 @@ For an element on which you wish to track scroll events, add a class of `ga-scro
 
 *__gatrack.scrollAt__(element, scrollPoint [, scrollDirection, category, action, label, value])*
 
+Google Analytics events accept four parameters:
+- __category:__ _string_
+- __action:__ _string_
+- __label:__ _string_
+- __value:__ _integer_
+
 In general, the event hooks look for things like an element `id` or `title` attribute to assign to the _action_ parameter when one is not specified either explicitly or in the data-attribute of the element.
 
 In the case of the __link__ event, it looks for the `href` value in absence of an explicity declaration or data-attribute, and the __scrollAt__ event looks for the page title content.
@@ -79,11 +85,6 @@ In the case of the __link__ event, it looks for the `href` value in absence of a
 *__gatrack.init__()* is available and can be used to initialize the event listeners on specified elements whenever you like.
 
 The __action__ hook, when given an optional callback function, returns a 'success' string on success and a traditional error object otherwise.
-
-- __category:__ _string_
-- __action:__ _string_
-- __label:__ _string_
-- __value:__ _integer_
 
 You can [read more specifics](https://developers.google.com/analytics/devguides/collection/analyticsjs/events) about [the event object in Google Analytics](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide).
 
@@ -96,7 +97,9 @@ To start recording errors, you simply need to place the following snippet in a `
 ```javascript
 // One-liner, minified (use this one!)
 (function(g,a,t,r,a,c,k){g[r]=g[r]||{};g[r][a]=t.getTime();g[r][c]=[];g[c]=function(m,u,l,c,e){this.gatrack.onerror.push([m,u,l,c,e])}})(window,document,(new Date()),'gatrack','timer','onerror');
-// Expanded
+```
+```javascript
+// Expanded, so you can see
 (function(g,a,t,r,a,c,k){
   g[r] = g[r] || {};
   g[r][a] = t.getTime();
