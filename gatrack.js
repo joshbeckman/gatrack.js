@@ -155,7 +155,7 @@
     };
   tempTrack.init();
   // Catach our own errors
-  for (var i = 0; i < win.gatrack.length; i++) {
+  for (var i = 0; i < win.gatrack.onerror.length; i++) {
     tempTrack.onerror.push(win.gatrack.onerror[i]);
   }
   win.gatrack = tempTrack;
