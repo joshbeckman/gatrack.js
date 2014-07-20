@@ -1,24 +1,32 @@
 # gatrack.js
 
-> Easily track user events with Google Analytics.
+> Easily track user events with Google Analytics. Test UI/UX theories, compare client performance/speed, even track client-side errors. All user events are tied to all other session data in Google Analytics.
+
+## Is it any good?
+
+You betcha. Check out the [provided index.html](https://github.com/jbckmn/gatrack.js/blob/master/index.html) or [demo](http://gatrack.andjosh.com) for working examples.
 
 ## Way-cool:
 
 - [Auto-track](#api-usage) events on elements with a class-based API
 - Explicit [action hook](#registering-custom-events), works with [any registerable browser event](https://developer.mozilla.org/en-US/docs/Web/Reference/Events) 
 - Support for multiple versions of Google's analytics [tracking scripts](#things-youll-need) (_ga_ and __gaq_)
+- Supports multiple loading multiple profiles at once
+- Track [client errors as separate events](#tracking-erros), attached to all prior & subsequent interaction data
+- All user events are tied to all other session data in Google Analytics
 - Weighs under 3kb (_even smaller if you're smart enough to gzip_)
-- Provides support for [common events](#api-usage)
+- Provides tracking support for [common events](#api-usage)
   - Scrolling
   - Touches
   - Links
   - Clicks
   - Hovering
+  - Errors
 
 ## Things you'll need
 
-- A version of the [Google Analytics](http://www.google.com/analytics/) tracking script released within the last couple years
 - A Google Analytics profile
+- A version of the [Google Analytics](http://www.google.com/analytics/) tracking script released within the last couple years, installed in your page source
 
 ## API usage
 
@@ -79,6 +87,28 @@ The __action__ hook, when given an optional callback function, returns a 'succes
 
 You can [read more specifics](https://developers.google.com/analytics/devguides/collection/analyticsjs/events) about [the event object in Google Analytics](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide).
 
-## Examples
+## Tracking Errors
 
-Check out the included [index.html](https://github.com/jbckmn/gatrack.js/blob/master/index.html) for a working example.
+You can also track errors on your page through gatrack. All you'll need to do is override the native `onerror` function with one for gatrack. 
+
+To start recording errors, you simply need to place the following snippet in a `script` tag so that it will be the first code executed on your page, preferrably in the `head` of your document.
+
+```javascript
+// One-liner, minified (use this one!)
+(function(g,a,t,r,a,c,k){g[r]=g[r]||{};g[r][a]=t.getTime();g[r][c]=[];g[c]=function(m,u,l,c,e){this.gatrack.onerror.push([m,u,l,c,e])}})(window,document,(new Date()),'gatrack','timer','onerror');
+// Expanded
+(function(g,a,t,r,a,c,k){
+  g[r] = g[r] || {};
+  g[r][a] = t.getTime();
+  g[r][c] = [];
+  g[c] = function( m, u, l, c, e ) {
+    this.gatrack.onerror.push([m, u, l, c, e]);
+  };
+})(window,document,(new Date()),'gatrack','timer','onerror');
+```
+
+This snippet will allow you to record errors that are raised even before any other JavaScript code is executed. The gatrack library records errors in the following format:
+- __category__: 'Recorded Error'
+- __label__: The error's message string
+- __action__: 'Error line:column(url)'
+- __value__: Time of occurence after HTML load, in seconds, ronded to nearest hundreth
