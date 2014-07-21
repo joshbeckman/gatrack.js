@@ -114,4 +114,4 @@ This snippet will allow you to record errors that are raised even before any oth
 - __category__: 'Recorded Error'
 - __label__: The error's message string
 - __action__: 'Error line:column(url)'
-- __value__: Time of occurence after HTML load, in seconds, rounded to nearest hundreth
+- __value__: Time of occurence after HTML load (in seconds, rounded to nearest hundreth)
