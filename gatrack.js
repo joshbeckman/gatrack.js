@@ -32,7 +32,7 @@
       link: function(elem, category, action, label, value){
         var cat = category || elem[ds][gaTC] || 'Link Event',
           act = action || elem[ds][gaTA] || elem.href || elem.title || elem.id,
-          lab = label || elem.rel || elem[ds][gaTL],
+          lab = label || elem[ds][gaTL] || elem.rel || elem.title,
           val = value || elem[ds][gaTV];
         if (!act && (elem.target && elem.target != '_self')) {
           act = 'Outbound Link';
