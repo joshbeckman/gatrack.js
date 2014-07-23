@@ -10,7 +10,7 @@ You betcha. Check out the [provided index.html](https://github.com/jbckmn/gatrac
 
 - [Auto-track](#api-usage) events on elements with a class-based API
 - Explicit [action hook](#registering-custom-events), works with [any registerable browser event](https://developer.mozilla.org/en-US/docs/Web/Reference/Events) 
-- Support for multiple versions of Google's analytics [tracking scripts](#things-youll-need) (_ga_ and __gaq_)
+- Support for multiple versions of Google's analytics [tracking scripts](#things-youll-need) (_ga_ and *_gaq*)
 - Supports multiple loading multiple profiles at once
 - Track [client errors as separate events](#tracking-erros), attached to all prior & subsequent interaction data
 - All user events are tied to all other session data in Google Analytics
@@ -114,4 +114,4 @@ This snippet will allow you to record errors that are raised even before any oth
 - __category__: 'Recorded Error'
 - __label__: The error's message string
 - __action__: 'Error line:column(url)'
-- __value__: Time of occurence after HTML load, in seconds, ronded to nearest hundreth
+- __value__: Time of occurence after HTML load (in seconds, rounded to nearest hundreth)
