@@ -4,7 +4,7 @@
 
 ## Is it any good?
 
-You betcha. Check out the [provided index.html](https://github.com/jbckmn/gatrack.js/blob/master/index.html) or [demo](http://gatrack.andjosh.com) for working examples.
+You betcha. Check out the [provided index.html](https://github.com/jbckmn/gatrack.js/blob/master/index.html) demo for working examples.
 
 ## Way-cool:
 
