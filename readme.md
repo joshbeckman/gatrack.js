@@ -1,5 +1,7 @@
 # gatrack.js
 
+![gatrack.js](https://s3.amazonaws.com/bckmn/public/blog/gatrackjs.png)
+
 > Easily track user events with Google Analytics. Test UI/UX theories, compare client performance/speed, even track client-side errors. All user events are tied to all other session data in Google Analytics.
 
 ## Is it any good?
