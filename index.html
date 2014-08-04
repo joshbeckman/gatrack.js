@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gatrack.js by jbckmn</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Gatrack.js</h1>
+        <p>Easily track any user events with Google Analytics.</p>
+
+        <p class="view"><a href="https://github.com/jbckmn/gatrack.js">View the Project on GitHub <small>jbckmn/gatrack.js</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/jbckmn/gatrack.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/jbckmn/gatrack.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/jbckmn/gatrack.js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="gatrackjs" class="anchor" href="#gatrackjs"><span class="octicon octicon-link"></span></a>gatrack.js</h1>
+
+<p><img src="https://s3.amazonaws.com/bckmn/public/blog/gatrackjs.png" alt="gatrack.js"></p>
+
+<blockquote>
+<p>Easily track user events with Google Analytics. Test UI/UX theories, compare client performance/speed, even track client-side errors. All user events are tied to all other session data in Google Analytics.</p>
+</blockquote>
+
+<h2>
+<a name="is-it-any-good" class="anchor" href="#is-it-any-good"><span class="octicon octicon-link"></span></a>Is it any good?</h2>
+
+<p>You betcha. Check out the <a href="https://github.com/jbckmn/gatrack.js/blob/master/index.html">provided index.html</a> demo for working examples.</p>
+
+<h2>
+<a name="way-cool" class="anchor" href="#way-cool"><span class="octicon octicon-link"></span></a>Way-cool:</h2>
+
+<ul>
+<li>
+<a href="#api-usage">Auto-track</a> events on elements with a class-based API</li>
+<li>Explicit <a href="#registering-custom-events">action hook</a>, works with <a href="https://developer.mozilla.org/en-US/docs/Web/Reference/Events">any registerable browser event</a> </li>
+<li>Support for multiple versions of Google's analytics <a href="#things-youll-need">tracking scripts</a> (<em>ga</em> and <em>_gaq</em>)</li>
+<li>Supports multiple loading multiple profiles at once</li>
+<li>Track <a href="#tracking-erros">client errors as separate events</a>, attached to all prior &amp; subsequent interaction data</li>
+<li>All user events are tied to all other session data in Google Analytics</li>
+<li>Weighs under 3kb (<em>even smaller if you're smart enough to gzip</em>)</li>
+<li>Provides tracking support for <a href="#api-usage">common events</a>
+
+<ul>
+<li>Scrolling</li>
+<li>Touches</li>
+<li>Links</li>
+<li>Clicks</li>
+<li>Hovering</li>
+<li>Errors</li>
+</ul>
+</li>
+</ul><h2>
+<a name="things-youll-need" class="anchor" href="#things-youll-need"><span class="octicon octicon-link"></span></a>Things you'll need</h2>
+
+<ul>
+<li>A Google Analytics profile</li>
+<li>A version of the <a href="http://www.google.com/analytics/">Google Analytics</a> tracking script released within the last couple years, installed in your page source</li>
+</ul><h2>
+<a name="api-usage" class="anchor" href="#api-usage"><span class="octicon octicon-link"></span></a>API usage</h2>
+
+<p>The API, on load, detects and tracks events for touch, hover, scroll, click, link and load. To specify category or the action being taken (both optional), simply add data-attributes of <code>gatrack-category</code> and/or <code>gatrack-action</code> and/or <code>gatrack-label</code> and/or <code>gatrack-value</code>.</p>
+
+<h4>
+<a name="click-events" class="anchor" href="#click-events"><span class="octicon octicon-link"></span></a>Click events</h4>
+
+<p>For an element on which you wish to track click events, add a class of <code>ga-click-trackable</code>.</p>
+
+<h4>
+<a name="link-visits" class="anchor" href="#link-visits"><span class="octicon octicon-link"></span></a>Link visits</h4>
+
+<p>For links (internal or outbound) for which you want to track user interaction, add a class of <code>ga-link-trackable</code>.</p>
+
+<h4>
+<a name="hover-events" class="anchor" href="#hover-events"><span class="octicon octicon-link"></span></a>Hover events</h4>
+
+<p>For an element on which you wish to track hover events, add a class of <code>ga-hover-trackable</code>.</p>
+
+<h4>
+<a name="load-events" class="anchor" href="#load-events"><span class="octicon octicon-link"></span></a>Load events</h4>
+
+<p>For an element on which you wish to track load events, add a class of <code>ga-load-trackable</code>.</p>
+
+<h4>
+<a name="touch-events" class="anchor" href="#touch-events"><span class="octicon octicon-link"></span></a>Touch events</h4>
+
+<p>For an element on which you wish to track touch events, add a class of <code>ga-touch-trackable</code>.</p>
+
+<h4>
+<a name="scroll-events" class="anchor" href="#scroll-events"><span class="octicon octicon-link"></span></a>Scroll events</h4>
+
+<p>For an element on which you wish to track scroll events, add a class of <code>ga-scroll-trackable</code>. You need to specfiy the position at which to trigger the event (either percentage amount or pixel distance, '30%' or '300px', by setting <code>data-gatrack-scroll-point</code>). For this type of event, you can also specify scrolling direction ('x' or 'y', by setting <code>data-gatrack-scroll-direction</code>) to track , which defaults to 'y', or vertical.</p>
+
+<h2>
+<a name="registering-custom-events" class="anchor" href="#registering-custom-events"><span class="octicon octicon-link"></span></a>Registering custom events</h2>
+
+<p><em><strong>gatrack.action</strong>(element, category, action [, label, value, callback(result)])</em></p>
+
+<p><em><strong>gatrack.link</strong>(element [, category, action, label, value])</em></p>
+
+<p><em><strong>gatrack.click</strong>(element [, category, action, label, value])</em></p>
+
+<p><em><strong>gatrack.load</strong>(element [, category, action, label, value])</em></p>
+
+<p><em><strong>gatrack.touch</strong>(element [, category, action, label, value])</em></p>
+
+<p><em><strong>gatrack.hover</strong>(element [, category, action, label, value])</em></p>
+
+<p><em><strong>gatrack.scrollAt</strong>(element, scrollPoint [, scrollDirection, category, action, label, value])</em></p>
+
+<p>Google Analytics events accept four parameters:</p>
+
+<ul>
+<li>
+<strong>category:</strong> <em>string</em>
+</li>
+<li>
+<strong>action:</strong> <em>string</em>
+</li>
+<li>
+<strong>label:</strong> <em>string</em>
+</li>
+<li>
+<strong>value:</strong> <em>integer</em>
+</li>
+</ul><p>In general, the event hooks look for things like an element <code>id</code> or <code>title</code> attribute to assign to the <em>action</em> parameter when one is not specified either explicitly or in the data-attribute of the element.</p>
+
+<p>In the case of the <strong>link</strong> event, it looks for the <code>href</code> value in absence of an explicity declaration or data-attribute, and the <strong>scrollAt</strong> event looks for the page title content.</p>
+
+<p><em><strong>gatrack.init</strong>()</em> is available and can be used to initialize the event listeners on specified elements whenever you like.</p>
+
+<p>The <strong>action</strong> hook, when given an optional callback function, returns a 'success' string on success and a traditional error object otherwise.</p>
+
+<p>You can <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/events">read more specifics</a> about <a href="https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide">the event object in Google Analytics</a>.</p>
+
+<h2>
+<a name="tracking-errors" class="anchor" href="#tracking-errors"><span class="octicon octicon-link"></span></a>Tracking Errors</h2>
+
+<p>You can also track errors on your page through gatrack. All you'll need to do is override the native <code>onerror</code> function with one for gatrack. </p>
+
+<p>To start recording errors, you simply need to place the following snippet in a <code>script</code> tag so that it will be the first code executed on your page, preferrably in the <code>head</code> of your document.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// One-liner, minified (use this one!)</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">r</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">c</span><span class="p">,</span><span class="nx">k</span><span class="p">){</span><span class="nx">g</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span><span class="o">=</span><span class="nx">g</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span><span class="o">||</span><span class="p">{};</span><span class="nx">g</span><span class="p">[</span><span class="nx">r</span><span class="p">][</span><span class="nx">a</span><span class="p">]</span><span class="o">=</span><span class="nx">t</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span><span class="nx">g</span><span class="p">[</span><span class="nx">r</span><span class="p">][</span><span class="nx">c</span><span class="p">]</span><span class="o">=</span><span class="p">[];</span><span class="nx">g</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">u</span><span class="p">,</span><span class="nx">l</span><span class="p">,</span><span class="nx">c</span><span class="p">,</span><span class="nx">e</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">gatrack</span><span class="p">.</span><span class="nx">onerror</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">m</span><span class="p">,</span><span class="nx">u</span><span class="p">,</span><span class="nx">l</span><span class="p">,</span><span class="nx">c</span><span class="p">,</span><span class="nx">e</span><span class="p">])}})(</span><span class="nb">window</span><span class="p">,</span><span class="nb">document</span><span class="p">,(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span><span class="s1">'gatrack'</span><span class="p">,</span><span class="s1">'timer'</span><span class="p">,</span><span class="s1">'onerror'</span><span class="p">);</span>
+</pre></div>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// Expanded, so you can see</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">r</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">c</span><span class="p">,</span><span class="nx">k</span><span class="p">){</span>
+  <span class="nx">g</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span> <span class="o">=</span> <span class="nx">g</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+  <span class="nx">g</span><span class="p">[</span><span class="nx">r</span><span class="p">][</span><span class="nx">a</span><span class="p">]</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span>
+  <span class="nx">g</span><span class="p">[</span><span class="nx">r</span><span class="p">][</span><span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nx">g</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">gatrack</span><span class="p">.</span><span class="nx">onerror</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">m</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">e</span><span class="p">]);</span>
+  <span class="p">};</span>
+<span class="p">})(</span><span class="nb">window</span><span class="p">,</span><span class="nb">document</span><span class="p">,(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span><span class="s1">'gatrack'</span><span class="p">,</span><span class="s1">'timer'</span><span class="p">,</span><span class="s1">'onerror'</span><span class="p">);</span>
+</pre></div>
+
+<p>This snippet will allow you to record errors that are raised even before any other JavaScript code is executed. The gatrack library records errors in the following format:</p>
+
+<ul>
+<li>
+<strong>category</strong>: 'Recorded Error'</li>
+<li>
+<strong>label</strong>: The error's message string</li>
+<li>
+<strong>action</strong>: 'Error line:column(url)'</li>
+<li>
+<strong>value</strong>: Time of occurence after HTML load (in seconds, rounded to nearest hundreth)</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/jbckmn">jbckmn</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-37125372-11");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
