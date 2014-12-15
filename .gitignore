@@ -1,7 +1,5 @@
 *.DS_Store
 
-package.json
-gruntfile.js
 node_modules/
 
 npm-debug.log

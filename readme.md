@@ -8,6 +8,15 @@
 
 You betcha. Check out the [provided index.html](https://github.com/jbckmn/gatrack.js/blob/master/exampl/index.html) demo for working examples.
 
+## Installation
+
+You can install gatrack.js via Bower or NPM:
+```
+bower install gatrack
+npm install gatrack
+```
+Or, you can just include the `dist/gatrack.min.js` file anywhere on your page.
+
 ## Way-cool:
 
 - [Auto-track](#api-usage) events on elements with a class-based API

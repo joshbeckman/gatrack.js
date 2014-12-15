@@ -1,0 +1,29 @@
+{
+  "name": "gatrack",
+  "version": "1.3.0",
+  "homepage": "http://jbckmn.github.io/gatrack.js/",
+  "authors": [
+    "jbckmn <email@andjosh.com>"
+  ],
+  "description": "Easily track user (or any) events and errors with Google Analytics",
+  "main": "dist/gatrack.min.js",
+  "dependencies": {},
+  "keywords": [
+    "Google",
+    "Analytics",
+    "error",
+    "tracking",
+    "event",
+    "tracking",
+    "user",
+    "interaction"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
