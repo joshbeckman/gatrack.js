@@ -118,7 +118,7 @@
           var cat = 'Recorded Error',
             lab = errArray[0],
             err = errArray[4],
-            act = ('Error line:col(url) ' + errArray[2].toString() + ':' + errArray[3].toString() + '(' + errArray[1] + ')'),
+            act = ('Error line:col(url) ' + (errArray[2] ? errArray[2].toString() : '') + ':' + (errArray[3] ? errArray[3].toString() : '') + '(' + errArray[1] + ')'),
             val = Math.round(((new Date()).getTime() - tempTrack.timer)/100)/10; // Record value as time (in seconds, ronded to nearest hundreth)
           tempTrack.action(undefined, cat, act, lab, val);
         }
