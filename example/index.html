@@ -30,24 +30,19 @@
       ga('create', 'UA-XXXXXXXX', 'example.com'); // Replace this with your own GA property ID to see it work.
       ga('send', 'pageview');
     </script>
-    <script type="text/javascript"
-      src="./gatrack.min.js"
-    ></script>
   </head>
   <body>
     <div id="hover-div">
-      <div class="container">
+      <div class="ga-hover-trackable container">
         <h3>Hover over me!</h3>
         <h3>Or, click me.</h3>
       </div>
     </div>
+    <script type="text/javascript"
+      src="./gatrack.min.js"
+    ></script>
     <script type="text/javascript">
-      // Let's demo this.
-      document.getElementById('hover-div').onmouseover = function(){
-        gatrack.action(this, null, null, null, null, function(result){
-          console.log(result);
-        });
-      };
+      // Let's demo this manually
       gatrack.click(document.getElementById('hover-div'));
 
       // Let's trigger an error (and see it sent to GA):
